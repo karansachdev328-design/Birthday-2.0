@@ -23,7 +23,8 @@
             transition: background 0.8s ease, color 0.8s ease;
             overflow-x: hidden; 
             overflow-y: auto; 
-            background: linear-gradient(135deg, #fdfbf7, #fce4ec); /* Elegant light theme */
+            /* A beautiful, romantic warm gradient */
+            background: linear-gradient(135deg, #fdfbf7, #fce4ec, #e2d1c3); 
             color: #1a1a1a;
         }
 
@@ -42,24 +43,29 @@
             transition: all 0.5s ease;
         }
 
-        /* Container for the visual element */
-        .visual-container {
+        /* Visual Container for Icons and Images */
+        #visual-area {
             width: 100%;
             display: flex;
             justify-content: center;
-            margin-bottom: 20px; 
+            margin-bottom: 15px; 
+        }
+
+        .icon {
+            font-size: 3.5rem; 
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         /* Star Map circular style */
         .star-map-visual {
-            width: 260px; 
-            height: 260px;
+            width: 240px; 
+            height: 240px;
             border-radius: 50%;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: black;
+            background-color: #000;
             box-shadow: 0 8px 25px rgba(0,0,0,0.15); 
         }
         
@@ -69,49 +75,38 @@
             object-fit: cover;
         }
 
+        /* Standard Photo style (for Mjolnir page) */
+        .photo-visual {
+            width: 100%;
+            max-height: 250px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .photo-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         /* Text alignments */
-        .text-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 8px; 
-            align-items: center;
-            margin-top: 10px; 
-        }
-
-        /* Separator line */
-        .verbatim-separator {
-            width: 60%;
-            border: none;
-            border-top: 1px solid #1a1a1a; 
-            margin: 20px auto 15px; 
-        }
-
-        /* Title text (Name) */
-        .verbatim-title {
-            font-size: 3.2rem; 
-            font-weight: 300; 
-            margin-bottom: 0px; 
-            letter-spacing: 2px;
-            font-family: 'Poppins', sans-serif;
+        h1 {
+            font-size: 2rem; 
+            font-weight: 600; 
+            margin-bottom: 15px; 
+            letter-spacing: 1px;
+            font-family: 'Playfair Display', serif;
             color: #1a1a1a; 
         }
 
-        /* Descriptive text */
-        .verbatim-descriptive-text {
-            font-size: 1.05rem; 
+        p {
+            font-size: 1.1rem; 
             font-weight: 300; 
-            line-height: 1.45; 
+            line-height: 1.5; 
+            min-height: 80px;
             font-family: 'Poppins', sans-serif;
             color: #333; 
-        }
-
-        /* Smaller text blocks */
-        .verbatim-small-text {
-            font-size: 0.95rem; 
-            font-weight: 300; 
-            line-height: 1.35; 
-            font-family: 'Poppins', sans-serif;
-            color: #555; 
         }
 
         /* Base Button & Container Styling */
@@ -121,7 +116,7 @@
             gap: 12px;
             align-items: center;
             width: 100%;
-            margin-top: 30px; 
+            margin-top: 25px; 
         }
 
         button {
@@ -139,10 +134,17 @@
             color: #1a1a1a; 
         }
 
-        button:hover {
+        button:hover:not(:disabled) {
             transform: translateY(-2px);
             background: #1a1a1a; 
             color: #ffffff; 
+        }
+
+        button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            border-color: #555;
+            color: #555;
         }
 
         /* Animation for when text changes */
@@ -160,63 +162,141 @@
 
     <div class="glass-panel fade-in" id="content-box">
         
-        <div class="visual-container">
-            <div class="star-map-visual">
-                <img src="starmap.jpg" alt="The Night Sky">
-            </div>
-        </div>
+        <div id="visual-area"></div>
         
-        <h1 class="verbatim-title">Shruti</h1>
-        <hr class="verbatim-separator">
+        <h1 id="page-title"></h1>
+        <p id="page-text"></p>
         
-        <div class="text-stack">
-            <p class="verbatim-descriptive-text">The night sky the day you were born</p>
-            <p class="verbatim-small-text">Tuesday, 01 May 2001</p>
-            <p class="verbatim-small-text">16.992895° N, 73.31996° E</p>
-        </div>
-        
-        <div class="btn-container" id="button-container">
-            <button onclick="nextPage()">Begin Journey</button>
-        </div>
+        <div class="btn-container" id="button-container"></div>
+
     </div>
 
     <script>
-        // Define your journey data. This array can be populated later.
-        const journeyPages = [
+        // Your beautifully crafted journey pages!
+        const pages = [
             {
-                visual: "starmap.jpg",
-                title: "Shruti",
-                descriptiveText: "The night sky the day you were born",
-                dateText: "Tuesday, 01 May 2001",
-                coordinatesText: "16.992895° N, 73.31996° E",
-                btnText: "Begin Journey"
+                visualType: "icon",
+                visualContent: "⏳",
+                title: "Are you ready?",
+                text: "A very special journey is about to begin. Please wait while the timeline calibrates...",
+                btnText: "Begin Journey",
+                isTimer: true // This triggers the countdown logic
+            },
+            {
+                visualType: "icon",
+                visualContent: "🎂",
+                title: "Happy Birthday Shruti!",
+                text: "Every day with you is my favorite day, but today is the absolute best of them all!!",
+                btnText: "Next",
+                isTimer: false
+            },
+            {
+                visualType: "icon",
+                visualContent: "⚠️",
+                title: "Error 404",
+                text: "Words not found to describe how much I love you ❤️",
+                btnText: "Refresh System",
+                isTimer: false
+            },
+            {
+                visualType: "image",
+                visualContent: "starmap.jpg",
+                imageClass: "star-map-visual", // Makes it a circle
+                title: "Your Sky",
+                text: "In a galaxy of 100 billion stars, these are the only ones that matter because they watched you arrive.",
+                btnText: "Next",
+                isTimer: false
+            },
+            {
+                visualType: "image",
+                visualContent: "us.jpg",
+                imageClass: "photo-visual", // Makes it a nice rounded rectangle
+                title: "Worthy ⚡",
+                text: "I checked with Mjolnir. It confirmed what I already knew: You are definitely Worthy.",
+                btnText: "Next",
+                isTimer: false
+            },
+            {
+                visualType: "icon",
+                visualContent: "🎬",
+                title: "My Masterpiece",
+                text: "Happy birthday to the girl who makes every day feel like a cinematic masterpiece. I’m so lucky to have you by my side.",
+                btnText: "Happy Birthday!",
+                isTimer: false
             }
-            // Add future pages here when you are ready!
         ];
 
         let currentIndex = 0;
 
         function updatePage() {
-            // This is ready for when we add more pages to the array
-            const currentData = journeyPages[currentIndex];
+            const data = pages[currentIndex];
             const contentBox = document.getElementById('content-box');
             
-            // Trigger animation
+            // Retrigger the fade-in animation smoothly
             contentBox.classList.remove('fade-in');
             void contentBox.offsetWidth; 
             contentBox.classList.add('fade-in');
+
+            // 1. Inject Visuals dynamically
+            const visualArea = document.getElementById('visual-area');
+            if (data.visualType === "icon") {
+                visualArea.innerHTML = `<span class="icon">${data.visualContent}</span>`;
+            } else if (data.visualType === "image") {
+                visualArea.innerHTML = `
+                    <div class="${data.imageClass}">
+                        <img src="${data.visualContent}" alt="Visual">
+                    </div>
+                `;
+            }
+
+            // 2. Inject Text
+            document.getElementById('page-title').innerText = data.title;
+            document.getElementById('page-text').innerText = data.text;
+
+            // 3. Inject Button & Handle Timer Logic
+            const btnArea = document.getElementById('button-container');
+            
+            if (data.isTimer) {
+                // Render a disabled button for the countdown
+                btnArea.innerHTML = `<button id="nav-btn" disabled>Unlocking in 3...</button>`;
+                let timeLeft = 3;
+                
+                const timer = setInterval(() => {
+                    timeLeft--;
+                    if (timeLeft > 0) {
+                        document.getElementById('nav-btn').innerText = `Unlocking in ${timeLeft}...`;
+                    } else {
+                        clearInterval(timer);
+                        document.getElementById('nav-btn').innerText = data.btnText;
+                        document.getElementById('nav-btn').disabled = false;
+                        document.getElementById('nav-btn').onclick = nextPage;
+                    }
+                }, 1000);
+            } else {
+                // If it's the last page, change what the button does
+                if (currentIndex === pages.length - 1) {
+                    btnArea.innerHTML = `<button onclick="finishJourney()">${data.btnText}</button>`;
+                } else {
+                    // Standard next page button
+                    btnArea.innerHTML = `<button onclick="nextPage()">${data.btnText}</button>`;
+                }
+            }
         }
 
         function nextPage() {
-            // When you are ready to add more pages, this function will move to the next one!
-            // For now, it just triggers an alert since it's the only page.
-            if (journeyPages.length > 1) {
+            if (currentIndex < pages.length - 1) {
                 currentIndex++;
                 updatePage();
-            } else {
-                alert("More pages coming soon!");
             }
         }
+
+        function finishJourney() {
+            alert("Happy Birthday Shruti! ❤️");
+        }
+
+        // Load the very first page when the website opens
+        window.onload = updatePage;
+
     </script>
 </body>
 </html>
