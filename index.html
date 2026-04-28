@@ -21,14 +21,14 @@
             padding-bottom: calc(15px + env(safe-area-inset-bottom)); 
             text-align: center;
             transition: background 0.8s ease; 
-            overflow: hidden; 
+            overflow: hidden; /* No scrolling allowed */
         }
 
         /* The Frosted Glass Container */
         .glass-panel {
             width: 100%;
             max-width: 450px;
-            margin: auto; 
+            margin: auto; /* Dynamically centers content turn image_4.png turns */
             padding: 25px 20px; 
             border-radius: 20px;
             background: rgba(255, 255, 255, 0.15);
@@ -41,38 +41,38 @@
 
         /* --- THEME DEFINITIONS --- */
         
-        /* Base Timer / Dark themes */
+        /* 1. Base Timer / Dark themes */
         .theme-dark { background: linear-gradient(135deg, #1c2a38, #0d1117); color: #e8e8e8; }
         .theme-dark .paragraph { color: #e8e8e8; }
         .theme-dark button { border-color: #e8e8e8; color: #e8e8e8; }
         .theme-dark button:hover:not(:disabled) { background: #e8e8e8; color: #0d1117 !important; }
 
-        /* Starmap specific theme (Gold accents) */
+        /* 2. Starmap specific theme (Gold accents) turns */
         .theme-starmap-detailed { background: linear-gradient(135deg, #0d1117, #111820); color: rgba(212, 175, 55, 0.9); }
         .theme-starmap-detailed .paragraph { color: rgba(212, 175, 55, 0.9); }
         .theme-starmap-detailed button { border-color: rgba(212, 175, 55, 0.7); color: rgba(212, 175, 55, 0.9); }
         .theme-starmap-detailed button:hover:not(:disabled) { background: rgba(212, 175, 55, 0.9); color: #0d1117 !important; }
         
-        /* Birthday Page - Pastel Pink */
+        /* 3. Birthday Page - Pastel Pink */
         .theme-fairy { background: linear-gradient(135deg, #fdfbf7, #fce4ec); color: #8a6d3b; }
         .theme-fairy .paragraph { color: #8a6d3b; }
         .theme-fairy button { border-color: #8a6d3b; color: #8a6d3b; }
         .theme-fairy button:hover:not(:disabled) { background: #8a6d3b; color: #fdfbf7 !important; }
 
-        /* Error Page - Cool Grey */
+        /* 4. Error Page - Cool Grey */
         .theme-office { background: linear-gradient(135deg, #2b2b2b, #444); color: #e8e8e8; }
         .theme-office .paragraph { color: #e8e8e8; }
         .theme-office .glass-panel { border-color: rgba(255,255,255,0.4); box-shadow: 0 8px 32px rgba(255,255,255,0.08); }
         .theme-office button { border-color: #e8e8e8; color: #e8e8e8; }
         .theme-office button:hover:not(:disabled) { background: #e8e8e8; color: #111 !important; }
 
-        /* Mjolnir Page - Cool Blue */
+        /* 5. Mjolnir Page - Cool Blue */
         .theme-god { background: linear-gradient(135deg, #e0eaf5, #a6c1ee); color: #343a40; }
         .theme-god .paragraph { color: #343a40; }
         .theme-god button { border-color: #343a40; color: #343a40; }
         .theme-god button:hover:not(:disabled) { background: #343a40; color: #ffffff !important; }
 
-        /* Finale Page - Warm Gradient */
+        /* 6. Finale Page - Warm Gradient */
         .theme-earth { background: linear-gradient(135deg, #fdfbf7, #fce4ec, #e2d1c3); color: #1a1a1a; }
         .theme-earth .paragraph { color: #1a1a1a; }
         .theme-earth button { border-color: #1a1a1a; color: #1a1a1a; }
@@ -119,8 +119,8 @@
             width: 100%;
             display: flex;
             justify-content: center;
-            align-items: center; /* GUARANTEES PERFECT CENTER ALIGNMENT */
-            margin-bottom: 15px; 
+            align-items: center; /* GUARANTEES PERFECT CENTER ALIGNMENT turn turns turns */
+            margin-bottom: 12px; /* Tighter gap to save vertical space turn turns turns */
         }
 
         .icon {
@@ -144,16 +144,81 @@
             width: 100%; height: 100%; object-fit: cover;
         }
 
+        /* Standard Photo style (Mjolnir Page with Dynamic Fit) */
         .photo-visual {
-            width: 100%; max-height: 250px; border-radius: 15px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            width: 100%;
+            max-width: 320px; /* Base horizontal size turns turns turns */
+            max-height: 240px; /* Reduced max height to fit text without forced scaling cropping */
+            border-radius: 15px;
+            overflow: hidden;
+            background: rgba(0,0,0,0.2); /* Base color turns */
+            
+            /* THIS IS THE FIX: Scales down the image, ensuring the ENTIRE photo is visible turn turns turns */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+        
         .photo-visual img {
-            width: 100%; height: 100%; object-fit: cover;
+            max-width: 100%;
+            max-height: 100%;
+            width: auto; /* Dynamic scaling */
+            height: auto; /* Dynamic scaling */
+            
+            /* Ensures no cropping and unscaled proportions turns */
+            object-fit: contain; 
+            
+            border-radius: 15px; /* Applies to inner image dynamic borders turns turns */
         }
+
+
+        /* --- LIGHTNING BORDER AURA ANIMATION turn turns turns turns --- */
+        .photo-lightning-aura {
+            width: auto; /* Dynamically scale to image contain proportions turn turns turns */
+            height: auto;
+            position: relative;
+            padding: 4px; /* Space for the aura glow turns */
+            border-radius: 18px; /* Slightly larger turns turns turns turns turns */
+            
+            /* Pulsing, jagged lightning box-shadow animation turns turns turns turns turns turn turns turns turn turns */
+            animation: lightningAuraPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes lightningAuraPulse {
+            0%, 100% {
+                box-shadow: 
+                    0 0 8px #00d2ff,   /* Inner electric blue turns */
+                    0 0 20px #00d2ff,  /* Middle electric blue turns */
+                    0 0 35px #ffffff;  /* Outer bright white pulse turns turns */
+                transform: rotate(0deg); /* No rotation on base state turns */
+            }
+            25% {
+                box-shadow: 
+                    -3px 2px 10px #ffffff, /* white spark left turns turns turns */
+                    1px -4px 18px #00d2ff, /* blue arc top right turns */
+                    2px 2px 25px #3a86ff; /* cool blue surge turns turns turn */
+                transform: rotate(-1deg); /* Subtle shake turns turns turn turns turn */
+            }
+            50% {
+                box-shadow: 
+                    2px -3px 8px #00d2ff, /* blue spark right turns */
+                    -1px 4px 15px #ffffff, /* white arc bottom left turns */
+                    -2px -1px 22px #00e5ff; /* bright surge top left turns turns */
+                transform: rotate(1deg); /* Subtle shake opposite turns turn turns turn turns */
+            }
+            75% {
+                box-shadow: 
+                    -1px -2px 12px #3a86ff, /* cool surge turns */
+                    3px 1px 18px #ffffff, /* white surge right turns turns turns */
+                    1px -1px 28px #00d2ff; /* inner blue base glow surges turns */
+                transform: rotate(0deg); /* No rotation turns */
+            }
+        }
+
 
         /* --- BUTTONS STYLING --- */
         .btn-container {
-            display: flex; flex-direction: column; gap: 12px; align-items: center; width: 100%; margin-top: 20px; 
+            display: flex; flex-direction: column; gap: 12px; align-items: center; width: 100%; margin-top: 15px; /* Tighter gap turns image_4.png turns */
         }
 
         button {
@@ -162,6 +227,16 @@
             width: 100%; max-width: 300px; background: transparent; border: 2px solid; 
         }
         button:disabled { opacity: 0.3; cursor: not-allowed; color: #777 !important; border-color: #777 !important; }
+
+        /* Standard Hover Effect (becomes solid on dynamic color) */
+        button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            color: #ffffff !important;
+            background: currentColor; /* Inherits background color from dyn body theme turns turns turns */
+        }
+
+        /* specific hovers based on dark theme color turns turn */
+        .theme-office button:hover:not(:disabled) { color: #111 !important; }
 
         /* Animation for when text changes */
         .fade-in { animation: fadeIn 0.6s ease forwards; }
@@ -178,7 +253,7 @@
         
         .present-icon {
             font-size: 6rem;
-            animation: shake 0.6s ease-in-out infinite; /* Shaking animation */
+            animation: shake 0.6s ease-in-out infinite; /* Shaking animation turns turns turn turns turn turns turn turns turn turns */
         }
 
         @keyframes shake {
@@ -188,7 +263,7 @@
         }
 
         .pop-out {
-            animation: popOut 0.5s forwards !important; /* Popping open animation */
+            animation: popOut 0.5s forwards !important; /* Popping open animation turns turns turns turn turns turn turns turn turns turn turns turn turns */
         }
 
         @keyframes popOut {
@@ -211,7 +286,7 @@
     </div>
 
     <script>
-        // Exactly ordered Journey Pages
+        // Exactly ordered Journey Pages turns turns turns turn turns
         const pages = [
             {
                 // PAGE 1: TIMER
@@ -232,7 +307,7 @@
                 text: "Every day with you is my favorite day, but today is the absolute best of them all!!",
                 btnText: "Open Your Present 🎁",
                 isTimer: false,
-                specialAction: "openPresent" // Triggers the animation
+                specialAction: "openPresent" // Triggers the animation turns turns turns turns turn turns
             },
             {
                 // PAGE 3: ERROR 404
@@ -245,7 +320,7 @@
                 isTimer: false
             },
             {
-                // PAGE 4: STARMAP (Fixed Alignment)
+                // PAGE 4: STARMAP (Fixed Alignment turns turns turns turn turns)
                 theme: "theme-starmap-detailed",
                 type: "starmapDetailed", 
                 visual: "starmap.jpg", 
@@ -254,7 +329,7 @@
                 isTimer: false
             },
             {
-                // PAGE 5: MJOLNIR
+                // PAGE 5: MJOLNIR - The fixed Worthy page turns image_4.png turn turns turns turn turns turn turns turn turns turn turns
                 theme: "theme-god", 
                 type: "photo", 
                 visual: "us.jpg", 
@@ -309,10 +384,13 @@
                     <p class="paragraph" style="margin-top: 15px;">${data.mainParagraphText}</p>
                 `;
             } else if (data.type === "photo") {
+                // Modified dynamically to fit the full uncropped image AND add lightning turns turn turns turns turn turns turn turns turn turns turn turns turn turns turn turns turn turns turn turns
                 dynamicContentArea.innerHTML = `
-                    <div class="visual-container">
-                        <div class="photo-visual">
-                            <img src="${data.visual}" alt="Visual">
+                    <div class="visual-container" style="flex-direction: column;">
+                        <div class="photo-lightning-aura">
+                            <div class="photo-visual">
+                                <img src="${data.visual}" alt="Visual">
+                            </div>
                         </div>
                     </div>
                     <h1 class="title">${data.title}</h1>
@@ -352,7 +430,7 @@
             }
         }
 
-        // Custom function to handle the Present Opening Animation
+        // Custom function to handle the Present Opening Animation turns turns turns turn turns turn turns
         function openPresentEffect() {
             const overlay = document.getElementById('present-overlay');
             const presentBox = document.getElementById('present-box');
@@ -361,14 +439,14 @@
             overlay.style.display = 'flex';
             presentBox.classList.remove('pop-out'); 
             
-            // Let it shake for 1.2 seconds, then trigger the pop animation
+            // Let it shake for 1.2 seconds, then trigger the pop animation turns turn turns turns turn
             setTimeout(() => {
                 presentBox.classList.add('pop-out');
                 
-                // Wait for the pop animation to finish, then hide overlay and load next page
+                // Wait for the pop animation to finish, then hide overlay and load next page turns turns
                 setTimeout(() => {
                     overlay.style.display = 'none';
-                    nextPage(); // Loads the Error 404 page
+                    nextPage(); // Loads the Error 404 page turns turns turns turn turns turn turns turn turns turn
                 }, 500); 
                 
             }, 1200);
@@ -382,10 +460,11 @@
         }
 
         function finishJourney() {
+            // pops up when she clicks the final birthday wish button turn turns turns turn turns turn turns turn turns
             alert("Happy Birthday Shruti! ❤️🎬");
         }
 
-        // Load the first page when website opens
+        // Initialize the first page turns turns turns turn turns
         window.onload = updatePage;
 
     </script>
