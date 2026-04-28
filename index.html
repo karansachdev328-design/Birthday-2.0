@@ -13,37 +13,127 @@
         }
         
         body {
-            min-height: 100vh; 
-            min-height: 100dvh; 
+            height: 100vh; /* Fallback */
+            height: 100dvh; /* Dynamic height for mobile menus */
             display: flex;
-            flex-direction: column; 
-            padding: 15px 20px; 
-            padding-bottom: calc(20px + env(safe-area-inset-bottom)); 
+            flex-direction: column; /* Stack vertically */
+            padding: 10px 15px; 
+            padding-bottom: calc(15px + env(safe-area-inset-bottom)); /* iPhone safe zone */
             text-align: center;
-            transition: background 0.8s ease, color 0.8s ease;
-            overflow-x: hidden; 
-            overflow-y: auto; 
-            /* A beautiful, romantic warm gradient */
-            background: linear-gradient(135deg, #fdfbf7, #fce4ec, #e2d1c3); 
-            color: #1a1a1a;
+            transition: background 0.8s ease; /* Dynamic background animation */
+            overflow: hidden; /* No scrolling */
         }
 
         /* The Frosted Glass Container */
         .glass-panel {
             width: 100%;
             max-width: 450px;
-            margin: auto; 
-            padding: 35px 25px; 
+            margin: auto; /* Dynamic positioning based on page content */
+            padding: 25px 20px; 
             border-radius: 20px;
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             transition: all 0.5s ease;
         }
 
-        /* Visual Container for Icons and Images */
+        /* --- THEME DEFINITIONS --- */
+        
+        /* 1. Timer Page - Base Dark Luxurious Theme from image_4.png */
+        .theme-starmap-detailed { background: linear-gradient(135deg, #0d1117, #1c2a38); color: rgba(212, 175, 55, 0.9); }
+        .theme-starmap-detailed .paragraph { color: rgba(212, 175, 55, 0.9); }
+        
+        /* 2. Birthday Page - Bright, Cheerful Pastel Pink */
+        .theme-fairy { background: linear-gradient(135deg, #fdfbf7, #fce4ec); color: #8a6d3b; }
+        .theme-fairy .paragraph { color: #8a6d3b; }
+
+        /* 3. Error Page - Cool Grey with soft glow */
+        .theme-office { background: linear-gradient(135deg, #2b2b2b, #444); color: #e8e8e8; }
+        .theme-office .paragraph { color: #e8e8e8; }
+        .theme-office .glass-panel { border-color: rgba(255,255,255,0.4); box-shadow: 0 8px 32px rgba(255,255,255,0.08); }
+
+        /* 4. Mjolnir Page - Cool Blue with soft aura */
+        .theme-god { background: linear-gradient(135deg, #e0eaf5, #a6c1ee); color: #343a40; }
+        .theme-god .paragraph { color: #343a40; }
+
+        /* 5. Finale Page - Warm, Romantic Gradient */
+        .theme-earth { background: linear-gradient(135deg, #fdfbf7, #fce4ec, #e2d1c3); color: #1a1a1a; }
+        .theme-earth .paragraph { color: #1a1a1a; }
+
+
+        /* --- TEXT STYLING CLASSES --- */
+        
+        /* CSS for future title style verbatim from image_4.png turns */
+        .title {
+            font-size: 1.7rem; 
+            margin-bottom: 8px; 
+            letter-spacing: 1px;
+            font-family: 'Playfair Display', serif;
+            transition: color 0.5s ease;
+        }
+
+        /* CSS for future paragraph style from turns */
+        .paragraph {
+            font-size: 1.0rem; 
+            line-height: 1.4; 
+            margin-bottom: 12px; 
+            min-height: 60px; /* Base for long text pages */
+            font-family: 'Poppins', sans-serif;
+            transition: color 0.5s ease;
+        }
+
+        /* VERBATIM TEXT CLASSES from previous turns (to handle the data) */
+        
+        /* Stack to mimic original visual */
+        .verbatim-text-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        /* 'Shruti' Large title verbatim style turns 4.3 */
+        .verbatim-large-title {
+            font-size: 3.5rem; /* large name text turns 4.3 */
+            font-weight: 300; 
+            margin-bottom: 0px; 
+            letter-spacing: 1px;
+            font-family: 'Playfair Display', serif;
+            color: rgba(212, 175, 55, 0.9); /* Gold color turns 4.3 */
+        }
+
+        /* Verbatim separator style turns 4.3 */
+        .verbatim-separator {
+            width: 70%;
+            border: none;
+            border-top: 1.5px solid rgba(212, 175, 55, 0.7); /* Match turns 4.3 */
+            margin: 5px auto 10px;
+        }
+
+        /* Verbatim descriptive text style turns 4.3 */
+        .verbatim-descriptive-text {
+            font-size: 1.05rem; 
+            font-weight: 300; 
+            line-height: 1.45; 
+            font-family: 'Poppins', sans-serif;
+            color: rgba(212, 175, 55, 0.9); 
+        }
+
+        /* Verbatim text blocks verbatim style turns 4.3 */
+        .verbatim-small-text {
+            font-size: 0.95rem; 
+            font-weight: 300; 
+            line-height: 1.35; 
+            font-family: 'Poppins', sans-serif;
+            color: rgba(212, 175, 55, 0.9); 
+        }
+
+
+        /* --- VISUAL ELEMENTS STYLING --- */
+        
         #visual-area {
             width: 100%;
             display: flex;
@@ -52,7 +142,7 @@
         }
 
         .icon {
-            font-size: 3.5rem; 
+            font-size: 3.2rem; /* Large enough for detailed detailed icons (image_4.png turns) */
             text-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
@@ -66,7 +156,7 @@
             align-items: center;
             justify-content: center;
             background-color: #000;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15); 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3); /* Stronger shadow on deep base */
         }
         
         .star-map-visual img {
@@ -81,7 +171,7 @@
             max-height: 250px;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
         .photo-visual img {
@@ -90,37 +180,20 @@
             object-fit: cover;
         }
 
-        /* Text alignments */
-        h1 {
-            font-size: 2rem; 
-            font-weight: 600; 
-            margin-bottom: 15px; 
-            letter-spacing: 1px;
-            font-family: 'Playfair Display', serif;
-            color: #1a1a1a; 
-        }
 
-        p {
-            font-size: 1.1rem; 
-            font-weight: 300; 
-            line-height: 1.5; 
-            min-height: 80px;
-            font-family: 'Poppins', sans-serif;
-            color: #333; 
-        }
-
-        /* Base Button & Container Styling */
+        /* --- BUTTONS STYLING --- */
+        
         .btn-container {
             display: flex;
             flex-direction: column;
             gap: 12px;
             align-items: center;
             width: 100%;
-            margin-top: 25px; 
+            margin-top: 20px; /* Tighter spacing turns image_4.png */
         }
 
         button {
-            padding: 14px 24px; 
+            padding: 12px 20px; 
             font-size: 1.05rem; 
             border-radius: 30px;
             cursor: pointer;
@@ -130,21 +203,30 @@
             width: 100%;
             max-width: 300px;
             background: transparent;
-            border: 2px solid #1a1a1a; 
-            color: #1a1a1a; 
+            color: inherit; /* inherit color from dynamic body theme */
+            border: 2px solid; /* inherit border color from dynamic body theme */
         }
 
+        /* Standard Hover Effect (becomes solid on dynamic color) */
         button:hover:not(:disabled) {
             transform: translateY(-2px);
-            background: #1a1a1a; 
-            color: #ffffff; 
+            color: #ffffff !important;
+            background: currentColor; /* magic property based on border text color */
         }
 
+        /* Specific hover color exceptions for dark themes to ensure white text */
+        .theme-office button:hover:not(:disabled) { color: #111 !important; }
+
+        /* Specific style for starmap detailed button turns */
+        .theme-starmap-detailed button { border-color: rgba(212, 175, 55, 0.7); color: rgba(212, 175, 55, 0.9); }
+        .theme-starmap-detailed button:hover:not(:disabled) { background: rgba(212, 175, 55, 0.9); color: #0d1117 !important; }
+
+
         button:disabled {
-            opacity: 0.4;
+            opacity: 0.3;
             cursor: not-allowed;
-            border-color: #555;
-            color: #555;
+            color: #777 !important;
+            border-color: #777 !important;
         }
 
         /* Animation for when text changes */
@@ -158,67 +240,58 @@
         }
     </style>
 </head>
-<body>
+<body class="theme-starmap-detailed" id="body-bg">
 
     <div class="glass-panel fade-in" id="content-box">
         
-        <div id="visual-area"></div>
-        
-        <h1 id="page-title"></h1>
-        <p id="page-text"></p>
+        <div id="dynamic-content-area"></div>
         
         <div class="btn-container" id="button-container"></div>
 
     </div>
 
     <script>
-        // Your beautifully crafted journey pages!
+        // Data for your beautiful dynamic journey
         const pages = [
             {
-                visualType: "icon",
-                visualContent: "⏳",
-                title: "Are you ready?",
-                text: "A very special journey is about to begin. Please wait while the timeline calibrates...",
+                theme: "theme-starmap-detailed",
+                type: "starmapDetailed", // Special type to trigger verbatim detailed text display turns
+                visual: "starmap.jpg", 
+                mainParagraphText: "A very special journey is about to begin. Please wait while the timeline calibrates...",
                 btnText: "Begin Journey",
-                isTimer: true // This triggers the countdown logic
+                isTimer: true // Countdown logic
             },
             {
-                visualType: "icon",
-                visualContent: "🎂",
+                theme: "theme-fairy", // Cheerful pink theme for birthday wish
+                type: "standard", 
+                visual: { type: "icon", content: "🎂" },
                 title: "Happy Birthday Shruti!",
                 text: "Every day with you is my favorite day, but today is the absolute best of them all!!",
                 btnText: "Next",
                 isTimer: false
             },
             {
-                visualType: "icon",
-                visualContent: "⚠️",
+                theme: "theme-office", // Cool grey theme for "error"
+                type: "standard", 
+                visual: { type: "icon", content: "⚠️" },
                 title: "Error 404",
                 text: "Words not found to describe how much I love you ❤️",
                 btnText: "Refresh System",
                 isTimer: false
             },
             {
-                visualType: "image",
-                visualContent: "starmap.jpg",
-                imageClass: "star-map-visual", // Makes it a circle
-                title: "Your Sky",
-                text: "In a galaxy of 100 billion stars, these are the only ones that matter because they watched you arrive.",
-                btnText: "Next",
-                isTimer: false
-            },
-            {
-                visualType: "image",
-                visualContent: "us.jpg",
-                imageClass: "photo-visual", // Makes it a nice rounded rectangle
+                theme: "theme-god", // Cool blue theme for Mjolnir
+                type: "photo", 
+                visual: "us.jpg", 
                 title: "Worthy ⚡",
                 text: "I checked with Mjolnir. It confirmed what I already knew: You are definitely Worthy.",
                 btnText: "Next",
                 isTimer: false
             },
             {
-                visualType: "icon",
-                visualContent: "🎬",
+                theme: "theme-earth", // Warm finale theme
+                type: "standard", 
+                visual: { type: "icon", content: "🎬" },
                 title: "My Masterpiece",
                 text: "Happy birthday to the girl who makes every day feel like a cinematic masterpiece. I’m so lucky to have you by my side.",
                 btnText: "Happy Birthday!",
@@ -231,33 +304,66 @@
         function updatePage() {
             const data = pages[currentIndex];
             const contentBox = document.getElementById('content-box');
-            
-            // Retrigger the fade-in animation smoothly
+            const dynamicContentArea = document.getElementById('dynamic-content-area');
+            const btnArea = document.getElementById('button-container');
+
+            // Retrigger fade-in smoothly
             contentBox.classList.remove('fade-in');
             void contentBox.offsetWidth; 
             contentBox.classList.add('fade-in');
 
-            // 1. Inject Visuals dynamically
-            const visualArea = document.getElementById('visual-area');
-            if (data.visualType === "icon") {
-                visualArea.innerHTML = `<span class="icon">${data.visualContent}</span>`;
-            } else if (data.visualType === "image") {
-                visualArea.innerHTML = `
-                    <div class="${data.imageClass}">
-                        <img src="${data.visualContent}" alt="Visual">
+            // 1. DYNAMICALLY UPDATE THE BODY THEME
+            document.getElementById('body-bg').className = data.theme;
+
+
+            // 2. BUILD THE PAGE CONTENT AREA DYNAMICALLY based on "type"
+
+            if (data.type === "starmapDetailed") {
+                // SPECIAL LOGIC for Starmap Page to display BOTH verbatim details AND new text turns
+                dynamicContentArea.innerHTML = `
+                    <div class="visual-container">
+                        <div class="star-map-visual">
+                            <img src="${data.visual}" alt="Your Night Sky Star Map">
+                        </div>
                     </div>
+                    
+                    <div class="verbatim-text-stack">
+                        <h1 class="verbatim-large-title">Shruti</h1>
+                        <hr class="verbatim-separator">
+                        <p class="verbatim-descriptive-text">The night sky the day you were born</p>
+                        <p class="verbatim-small-text">Tuesday, 01 May 2001</p>
+                        <p class="verbatim-small-text">16.992895° N, 73.31996° E</p>
+                    </div>
+
+                    <p class="paragraph" style="margin-top: 15px;">${data.mainParagraphText}</p>
+                `;
+            } else if (data.type === "photo") {
+                // Special logic for photo pages (image with rounded rect and regular quote turns)
+                dynamicContentArea.innerHTML = `
+                    <div id="visual-area">
+                        <div class="photo-visual">
+                            <img src="${data.visual}" alt="Visual">
+                        </div>
+                    </div>
+                    <h1 class="title" id="page-title">${data.title}</h1>
+                    <p class="paragraph" id="page-text">${data.text}</p>
+                `;
+            } else {
+                // STANDARD PAGE logic for icons + basic quote turns
+                dynamicContentArea.innerHTML = `
+                    <div id="visual-area">
+                        <span class="icon">${data.visual.content}</span>
+                    </div>
+                    <h1 class="title" id="page-title">${data.title}</h1>
+                    <p class="paragraph" id="page-text">${data.text}</p>
                 `;
             }
 
-            // 2. Inject Text
-            document.getElementById('page-title').innerText = data.title;
-            document.getElementById('page-text').innerText = data.text;
 
-            // 3. Inject Button & Handle Timer Logic
-            const btnArea = document.getElementById('button-container');
-            
+            // 3. Inject Button & Handle Timer Logic dynamically based on current page properties
+
             if (data.isTimer) {
-                // Render a disabled button for the countdown
+                // Render a dynamic disabled button for the countdown turns
                 btnArea.innerHTML = `<button id="nav-btn" disabled>Unlocking in 3...</button>`;
                 let timeLeft = 3;
                 
@@ -273,11 +379,10 @@
                     }
                 }, 1000);
             } else {
-                // If it's the last page, change what the button does
+                // Normal button behavior (either Next or Finale)
                 if (currentIndex === pages.length - 1) {
                     btnArea.innerHTML = `<button onclick="finishJourney()">${data.btnText}</button>`;
                 } else {
-                    // Standard next page button
                     btnArea.innerHTML = `<button onclick="nextPage()">${data.btnText}</button>`;
                 }
             }
@@ -291,10 +396,11 @@
         }
 
         function finishJourney() {
+            //message that pops up when she clicks the final dynamic birthday wish button turns
             alert("Happy Birthday Shruti! ❤️");
         }
 
-        // Load the very first page when the website opens
+        // Initialize the first page turns
         window.onload = updatePage;
 
     </script>
