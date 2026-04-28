@@ -208,14 +208,6 @@
 
         @keyframes thorArrival { 0% { transform: scale(0); opacity: 0; } 80% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
 
-        .thunder-boom-text {
-            font-family: 'Playfair Display', serif; color: #fff; font-size: 3.5rem;
-            margin-top: 25px; text-shadow: 0 0 20px #00d2ff, 0 0 10px #ffffff;
-            letter-spacing: 4px; animation: boomPulse 0.5s infinite; position: relative; z-index: 1;
-        }
-
-        @keyframes boomPulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.8; } }
-
     </style>
 </head>
 <body class="theme-dark" id="body-bg">
@@ -228,9 +220,8 @@
     <div id="thor-overlay">
         <div class="lightning-flash-bg"></div> 
         <div class="thor-visual">
-            <img src="https://media.tenor.com/XqT27kO9H3gAAAAC/thor-ragnarok.gif" alt="Thor Lightning Strike">
+            <img src="thor.gif" alt="Thor Lightning Strike">
         </div>
-        <h1 class="thunder-boom-text">BOOM!</h1>
     </div>
 
     <div class="glass-panel fade-in" id="content-box">
@@ -370,7 +361,7 @@
             const overlay = document.getElementById('thor-overlay');
             overlay.style.display = 'flex';
 
-            // Gives the GIF 2.8 seconds to play its animation before fading out!
+            // Gives the GIF 2.8 seconds to play its animation before fading out
             setTimeout(() => {
                 overlay.style.transition = 'opacity 0.5s ease';
                 overlay.style.opacity = '0';
