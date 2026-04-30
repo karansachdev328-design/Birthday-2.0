@@ -13,22 +13,23 @@
         }
         
         body {
-            height: 100vh; 
-            height: 100dvh; 
+            min-height: 100vh; 
+            min-height: 100dvh; 
             display: flex;
             flex-direction: column; 
             padding: 10px 15px; 
             padding-bottom: calc(15px + env(safe-area-inset-bottom)); 
             text-align: center;
             transition: background 0.8s ease; 
-            overflow: hidden; /* No scrolling allowed on any page */
+            overflow-x: hidden;
+            overflow-y: auto; /* Allows scrolling on smaller screens so nothing gets cut off! */
         }
 
         /* The Frosted Glass Container */
         .glass-panel {
             width: 100%;
             max-width: 450px;
-            margin: auto; /* Dynamically centers content on any mobile screen shape */
+            margin: auto; 
             padding: 25px 20px; 
             border-radius: 20px;
             background: rgba(255, 255, 255, 0.15);
@@ -40,290 +41,114 @@
         }
 
         /* --- THEME DEFINITIONS --- */
-        
-        /* Base Timer / Dark themes */
         .theme-dark { background: linear-gradient(135deg, #1c2a38, #0d1117); color: #e8e8e8; }
         .theme-dark .paragraph { color: #e8e8e8; }
         .theme-dark button { border-color: #e8e8e8; color: #e8e8e8; }
         .theme-dark button:hover:not(:disabled) { background: #e8e8e8; color: #0d1117 !important; }
 
-        /* Starmap specific theme (Gold accents) */
         .theme-starmap-detailed { background: linear-gradient(135deg, #0d1117, #111820); color: rgba(212, 175, 55, 0.9); }
         .theme-starmap-detailed .paragraph { color: rgba(212, 175, 55, 0.9); }
         .theme-starmap-detailed button { border-color: rgba(212, 175, 55, 0.7); color: rgba(212, 175, 55, 0.9); }
         .theme-starmap-detailed button:hover:not(:disabled) { background: rgba(212, 175, 55, 0.9); color: #0d1117 !important; }
         
-        /* Birthday Page - Pastoral Pink */
         .theme-fairy { background: linear-gradient(135deg, #fdfbf7, #fce4ec); color: #8a6d3b; }
         .theme-fairy .paragraph { color: #8a6d3b; }
         .theme-fairy button { border-color: #8a6d3b; color: #8a6d3b; }
         .theme-fairy button:hover:not(:disabled) { background: #8a6d3b; color: #fdfbf7 !important; }
 
-        /* Error Page - Cool Grey */
         .theme-office { background: linear-gradient(135deg, #2b2b2b, #444); color: #e8e8e8; }
         .theme-office .paragraph { color: #e8e8e8; }
         .theme-office .glass-panel { border-color: rgba(255,255,255,0.4); box-shadow: 0 8px 32px rgba(255,255,255,0.08); }
         .theme-office button { border-color: #e8e8e8; color: #e8e8e8; }
         .theme-office button:hover:not(:disabled) { background: #e8e8e8; color: #111 !important; }
 
-        /* Rocky Page (Amaze Reveal) - Cool Space Blue with soft aura and zero gravity float animation */
         .theme-rocky { background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); color: #e6e6fa; }
         .theme-rocky .paragraph { color: #e6e6fa; }
-        .theme-rocky .visual-container .rocky-visual { animation: floatRocky 4s ease-in-out infinite; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
         .theme-rocky button { border-color: #b39ddb; color: #b39ddb; }
         .theme-rocky button:hover:not(:disabled) { background: #b39ddb; color: #0f0c29 !important; }
 
-        /* Mjolnir Worthy Page - Cool Blue with soft aura and dynamic uncropped photofit and lightning aura */
         .theme-god { background: linear-gradient(135deg, #e0eaf5, #a6c1ee); color: #343a40; }
         .theme-god .paragraph { color: #343a40; }
-        .theme-god .photo-lightning-aura { padding: 4px; border-radius: 18px; animation: lightningAuraPulse 1s ease-in-out infinite; }
         .theme-god button { border-color: #343a40; color: #343a40; }
         .theme-god button:hover:not(:disabled) { background: #343a40; color: #ffffff !important; }
 
-        /* Finale Page - Warm Gradient */
         .theme-earth { background: linear-gradient(135deg, #fdfbf7, #fce4ec, #e2d1c3); color: #1a1a1a; }
         .theme-earth .paragraph { color: #1a1a1a; }
         .theme-earth button { border-color: #1a1a1a; color: #1a1a1a; }
         .theme-earth button:hover:not(:disabled) { background: #1a1a1a; color: #ffffff !important; }
 
         /* --- TEXT STYLING CLASSES --- */
-        .title {
-            font-size: 1.7rem; 
-            margin-bottom: 8px; 
-            letter-spacing: 1px;
-            font-family: 'Playfair Display', serif;
-            transition: color 0.5s ease;
-        }
+        .title { font-size: 1.7rem; margin-bottom: 8px; letter-spacing: 1px; font-family: 'Playfair Display', serif; transition: color 0.5s ease; }
+        .paragraph { font-size: 1.0rem; line-height: 1.4; margin-bottom: 12px; min-height: 60px; font-family: 'Poppins', sans-serif; transition: color 0.5s ease; }
 
-        .paragraph {
-            font-size: 1.0rem; 
-            line-height: 1.4; 
-            margin-bottom: 12px; 
-            min-height: 60px; /* Base for long text pages */
-            font-family: 'Poppins', sans-serif;
-            transition: color 0.5s ease;
-        }
+        .verbatim-text-stack { display: flex; flex-direction: column; gap: 12px; align-items: center; margin-top: 10px; }
+        .verbatim-large-title { font-size: 3.5rem; font-weight: 300; margin-bottom: 0px; letter-spacing: 1px; font-family: 'Playfair Display', serif; color: rgba(212, 175, 55, 0.9); }
+        .verbatim-separator { width: 70%; border: none; border-top: 1.5px solid rgba(212, 175, 55, 0.7); margin: 5px auto 10px; }
+        .verbatim-descriptive-text { font-size: 1.05rem; font-weight: 300; line-height: 1.45; font-family: 'Poppins', sans-serif; color: rgba(212, 175, 55, 0.9); }
+        .verbatim-small-text { font-size: 0.95rem; font-weight: 300; line-height: 1.35; font-family: 'Poppins', sans-serif; color: rgba(212, 175, 55, 0.9); }
 
-        /* Starmap Verbatim Text Classes */
-        .verbatim-text-stack {
-            display: flex; flex-direction: column; gap: 12px; align-items: center; margin-top: 10px;
-        }
-        .verbatim-large-title {
-            font-size: 3.5rem; font-weight: 300; margin-bottom: 0px; letter-spacing: 1px;
-            font-family: 'Playfair Display', serif; color: rgba(212, 175, 55, 0.9); 
-        }
-        .verbatim-separator {
-            width: 70%; border: none; border-top: 1.5px solid rgba(212, 175, 55, 0.7); margin: 5px auto 10px;
-        }
-        .verbatim-descriptive-text {
-            font-size: 1.05rem; font-weight: 300; line-height: 1.45; font-family: 'Poppins', sans-serif; color: rgba(212, 175, 55, 0.9); 
-        }
-        .verbatim-small-text {
-            font-size: 0.95rem; font-weight: 300; line-height: 1.35; font-family: 'Poppins', sans-serif; color: rgba(212, 175, 55, 0.9); 
-        }
-
-        /* Pulsing Text Effect for specific pages like Rocky Amaze Reveal */
-        .pulse-text {
-            display: inline-block;
-            animation: textPulse 1.5s infinite;
-            text-shadow: 0 0 15px rgba(179, 157, 219, 0.6);
-        }
-
-        @keyframes textPulse {
-            0%, 100% { transform: scale(1); opacity: 0.9; }
-            50% { transform: scale(1.05); opacity: 1; }
-        }
+        .pulse-text { display: inline-block; animation: textPulse 1.5s infinite; text-shadow: 0 0 15px rgba(179, 157, 219, 0.6); }
+        @keyframes textPulse { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.05); opacity: 1; } }
 
         /* --- VISUAL ELEMENTS STYLING --- */
-        .visual-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center; /* GUARANTEES PERFECT CENTER ALIGNMENT turn turns turns */
-            margin-bottom: 12px; /* Tighter gap to save vertical space turn turns turns */
-        }
+        .visual-container { width: 100%; display: flex; justify-content: center; align-items: center; margin-bottom: 12px; }
+        .icon { font-size: 3.2rem; text-shadow: 0 2px 10px rgba(0,0,0,0.1); }
 
-        .icon {
-            font-size: 3.2rem; 
-            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+        .star-map-visual { width: 240px; height: 240px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; background-color: #000; box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+        .star-map-visual img { width: 100%; height: 100%; object-fit: cover; }
 
-        .star-map-visual {
-            width: 240px; 
-            height: 240px;
-            border-radius: 50%;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #000;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3); 
+        /* ROCKY ZERO-GRAVITY ANIMATION */
+        .rocky-visual {
+            width: 100%; max-width: 350px; border-radius: 15px; overflow: hidden; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); animation: floatRocky 5s ease-in-out infinite;
         }
-        
-        .star-map-visual img {
-            width: 100%; height: 100%; object-fit: cover;
-        }
-
-        /* Photo Visual style (Dynamic uncropped fits turn turns turns turn turns turn turns turn turns turn turns turn turns turn turns turn turns turn turns) */
-        .photo-visual {
-            width: 100%;
-            max-width: 320px; /* Base horizontal size turns turns turns */
-            max-height: 30dvh; /* Modified dynamically to fit the uncropped image AND text without forced scaling cropping turns turns turns turns turns turn turns turns turn turns turn turns turn turns turn turns */
-            border-radius: 15px;
-            overflow: hidden;
-            background: rgba(0,0,0,0.2); /* Base color turns */
-            
-            /* Ensures no cropping and unscaled proportions turns */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .photo-visual img {
-            max-width: 100%;
-            max-height: 100%;
-            width: auto; /* Dynamic scaling */
-            height: auto; /* Dynamic scaling */
-            
-            /* THIS IS THE FIX FOR CROPPED PHOTOS: Scales down image contain turns turns turns turn turns turn turns turn turns turn turns turn turns turn turns turn turns turn turns */
-            object-fit: contain; 
-            
-            border-radius: 15px; /* Applies to inner image dynamic borders turns turns */
-        }
-
-        /* Rocky/PHM Zero Gravity Float Animation turns turns turns turn turns turn turns turn turns */
+        .rocky-visual img { width: 100%; height: auto; display: block; }
         @keyframes floatRocky {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-12px) rotate(1.5deg); } /* Floats up and tilts slightly turns turns turn turns turn turns turn turns turn turns */
+            0%, 100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
+            50% { transform: translateY(-12px) rotateX(2deg) rotateY(2deg); }
         }
 
-        /* Mjolnir Worthy Page photo lightning aura effect turns image_4.png turns turns */
+        /* UNCROPPED PHOTO FIX: Ensures the image scales down instead of cutting off */
+        .photo-visual { 
+            width: 100%; max-width: 320px; border-radius: 15px; overflow: hidden; 
+            background: rgba(0,0,0,0.2); display: flex; justify-content: center; align-items: flex-start; 
+        }
+        .photo-visual img { 
+            width: 100%; max-height: 40vh; /* Limits height so it fits on screen */
+            object-fit: contain; /* Guarantees NO CROPPING */
+            border-radius: 15px; 
+        }
+
+        .photo-lightning-aura { width: 100%; max-width: 330px; position: relative; padding: 4px; border-radius: 18px; animation: lightningAuraPulse 1s ease-in-out infinite; }
         @keyframes lightningAuraPulse {
-            0%, 100% {
-                box-shadow: 
-                    0 0 8px #00d2ff,   /* Inner electric blue turns image_4.png */
-                    0 0 20px #00d2ff,  /* Middle electric blue turns image_4.png */
-                    0 0 35px #ffffff;  /* Outer bright white pulse turns turns image_4.png turns */
-                transform: rotate(0deg); /* No rotation on base state image_4.png turns turns image_4.png turns turns turns image_4.png */
-            }
-            25% {
-                box-shadow: 
-                    -3px 2px 10px #ffffff, /* white spark left turns image_4.png image_4.png image_4.png turns turns image_4.png */
-                    1px -4px 18px #00d2ff, /* blue arc top right turns image_4.png */
-                    2px 2px 25px #3a86ff; /* cool blue surge image_4.png turns turns turn */
-                transform: rotate(-1deg); /* Subtle shake image_4.png turns turns turn image_4.png turns image_4.png turns image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png */
-            }
-            50% {
-                box-shadow: 
-                    2px -3px 8px #00d2ff, /* blue spark right turns image_4.png */
-                    -1px 4px 15px #ffffff, /* white arc bottom left turns image_4.png turns image_4.png image_4.png */
-                    -2px -1px 22px #00e5ff; /* bright surge top left turns image_4.png image_4.png image_4.png turns turns image_4.png */
-                transform: rotate(1deg); /* Subtle shake opposite turns image_4.png image_4.png turn image_4.png turns image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png */
-            }
-            75% {
-                box-shadow: 
-                    -1px -2px 12px #3a86ff, /* cool surge turns image_4.png */
-                    3px 1px 18px #ffffff, /* white surge right turns image_4.png image_4.png turns turns turns image_4.png */
-                    1px -1px 28px #00d2ff; /* inner blue base glow surges turns image_4.png turns image_4.png */
-                transform: rotate(0deg); /* No rotation turns image_4.png image_4.png */
-            }
+            0%, 100% { box-shadow: 0 0 8px #00d2ff, 0 0 20px #00d2ff, 0 0 35px #ffffff; }
+            50% { box-shadow: 0 0 15px #ffffff, 0 0 30px #00d2ff, 0 0 50px #3a86ff; }
         }
 
         /* --- BUTTONS STYLING --- */
-        .btn-container {
-            display: flex; flex-direction: column; gap: 12px; align-items: center; width: 100%; margin-top: 15px; /* Tighter gap to save vertical space image_4.png turn turns */
-        }
-
-        button {
-            padding: 12px 20px; font-size: 1.05rem; border-radius: 30px; cursor: pointer;
-            font-family: 'Poppins', sans-serif; font-weight: 600; transition: all 0.3s ease;
-            width: 100%; max-width: 300px; background: transparent; border: 2px solid; 
-            color: inherit; border-color: inherit; /* Inherits background and text color from dynamic body theme turns turns turns */
-        }
+        .btn-container { display: flex; flex-direction: column; gap: 12px; align-items: center; width: 100%; margin-top: 15px; }
+        button { padding: 12px 20px; font-size: 1.05rem; border-radius: 30px; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: 600; transition: all 0.3s ease; width: 100%; max-width: 300px; background: transparent; border: 2px solid; color: inherit; border-color: inherit; }
         button:disabled { opacity: 0.3; cursor: not-allowed; color: #777 !important; border-color: #777 !important; }
+        button:hover:not(:disabled) { transform: translateY(-2px); color: #ffffff !important; background: currentColor; }
 
-        /* Standard Hover Effect (becomes solid on dynamic color) */
-        button:hover:not(:disabled) {
-            transform: translateY(-2px);
-            color: #ffffff !important;
-            background: currentColor; /* magic property based on dynamic border/text color image_4.png turn turns turns */
-        }
-
-        /* specific hovers based on dynamic body theme colors */
         .theme-office button:hover:not(:disabled) { color: #111 !important; }
         .theme-dark button:hover:not(:disabled) { color: #111 !important; }
 
+        .fade-in { animation: fadeIn 0.8s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Animation for when text changes */
-        .fade-in { animation: fadeIn 0.6s ease forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* --- OVERLAYS --- */
+        #present-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 9999; display: none; align-items: center; justify-content: center; flex-direction: column; color: white; backdrop-filter: blur(5px); }
+        .present-icon { font-size: 6rem; animation: giftShake 0.6s ease-in-out infinite; }
+        @keyframes giftShake { 0%, 100% { transform: rotate(0deg) scale(1); } 25% { transform: rotate(-15deg) scale(1.1); } 75% { transform: rotate(15deg) scale(1.1); } }
+        .pop-out { animation: popOut 0.5s forwards !important; }
+        @keyframes popOut { 0% { transform: scale(1.1); opacity: 1; } 50% { transform: scale(1.8); opacity: 1; } 100% { transform: scale(4); opacity: 0; } }
 
-        /* --- PRESENT OPENING OVERLAY ANIMATIONS --- */
-        #present-overlay {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(0,0,0,0.85); z-index: 9999;
-            display: none; align-items: center; justify-content: center;
-            flex-direction: column; color: white;
-            backdrop-filter: blur(5px);
-        }
-        
-        .present-icon {
-            font-size: 6rem;
-            animation: giftShake 0.6s ease-in-out infinite; /* Shaking animation turns image_4.png image_4.png image_4.png turns turns turns turns image_4.png */
-        }
-
-        @keyframes giftShake {
-            0%, 100% { transform: rotate(0deg) scale(1); }
-            25% { transform: rotate(-15deg) scale(1.1); }
-            75% { transform: rotate(15deg) scale(1.1); }
-        }
-
-        .pop-out {
-            animation: popOut 0.5s forwards !important; /* Popping open animation turns turns turns turns turns turns turns turns image_4.png image_4.png turns turns */
-        }
-
-        @keyframes popOut {
-            0% { transform: scale(1.1); opacity: 1; }
-            50% { transform: scale(1.8); opacity: 1; }
-            100% { transform: scale(4); opacity: 0; }
-        }
-
-        /* --- THOR THUNDERSTRIKE OVERLAY ANIMATIONS --- */
-        #thor-overlay {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: #000; z-index: 10000; /* Above Gift Box if needed image_4.png image_4.png turns */
-            display: none; align-items: center; justify-content: center;
-            flex-direction: column; overflow: hidden;
-        }
-
-        /* Lightning flashes background */
-        .lightning-flash-bg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: #fff; opacity: 0;
-            animation: backgroundLightningStrike 2.8s ease-out; /* Match timer duration turns image_4.png turns turns image_4.png turns image_4.png image_4.png image_4.png turns image_4.png turns */
-        }
-
-        @keyframes backgroundLightningStrike {
-            0%, 10%, 20%, 30% { opacity: 1; }
-            5%, 15%, 25%, 40%, 100% { opacity: 0; }
-        }
-
-        /* GIF animated visual fits image_4.png image_4.png image_4.png turns image_4.png image_4.png image_4.png image_4.png turns image_4.png turns image_4.png turns image_4.png turns */
-        .thor-visual {
-            display: flex; align-items: center; justify-content: center;
-            position: relative; z-index: 1;
-            animation: thorArrival 0.5s ease-out; /* Pop in image_4.png turns image_4.png */
-        }
-        
-        .thor-visual img {
-            max-width: 90vw; /* Fits perfectly on mobile screens image_4.png turns turns image_4.png turns */
-            max-height: 50vh; 
-            border-radius: 12px;
-            object-fit: contain;
-            box-shadow: 0 0 50px #00d2ff; /* Huge electric blue aura around the GIF image_4.png image_4.png turns */
-            background: #000;
-        }
-
+        #thor-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000; z-index: 10000; display: none; align-items: center; justify-content: center; flex-direction: column; overflow: hidden; }
+        .lightning-flash-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #fff; opacity: 0; animation: backgroundLightningStrike 2.8s ease-out; }
+        @keyframes backgroundLightningStrike { 0%, 10%, 20%, 30% { opacity: 1; } 5%, 15%, 25%, 40%, 100% { opacity: 0; } }
+        .thor-visual { display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; animation: thorArrival 0.5s ease-out; }
+        .thor-visual img { max-width: 90vw; max-height: 60vh; border-radius: 12px; object-fit: contain; box-shadow: 0 0 50px #00d2ff; background: #000; }
         @keyframes thorArrival { 0% { transform: scale(0); opacity: 0; } 80% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
 
     </style>
@@ -336,7 +161,8 @@
     </div>
 
     <div id="thor-overlay">
-        <div class="lightning-flash-bg"></div> <div class="thor-visual">
+        <div class="lightning-flash-bg"></div> 
+        <div class="thor-visual">
             <img src="thor.gif" alt="Thor Lightning Strike">
         </div>
     </div>
@@ -347,77 +173,42 @@
     </div>
 
     <script>
-        // Exactly ordered Journey Pages turns turns image_4.png turns turns turns turns image_4.png
+        // The Complete Journey Array
         const pages = [
             {
-                // PAGE 1: TIMER
-                theme: "theme-dark",
-                type: "standard",
-                visual: { type: "icon", content: "⏳" },
-                title: "Are you ready?",
-                text: "A very special journey is about to begin. Please wait while the timeline calibrates...",
-                btnText: "Begin Journey",
-                isTimer: true 
+                theme: "theme-dark", type: "standard", visual: { type: "icon", content: "⏳" },
+                title: "Are you ready?", text: "A very special journey is about to begin. Please wait while the timeline calibrates...",
+                btnText: "Begin Journey", isTimer: true 
             },
             {
-                // PAGE 2: HAPPY BIRTHDAY
-                theme: "theme-fairy", 
-                type: "standard", 
-                visual: { type: "icon", content: "🎂" },
-                title: "Happy Birthday Shruti!",
-                text: "Every day with you is my favorite day, but today is the absolute best of them all!!",
-                btnText: "Open Your Present 🎁",
-                isTimer: false,
-                specialAction: "openPresent" // Triggers Gift animation turns image_4.png image_4.png turns image_4.png turns turns turns image_4.png
+                theme: "theme-fairy", type: "standard", visual: { type: "icon", content: "🎂" },
+                title: "Happy Birthday Shruti!", text: "Every day with you is my favorite day, but today is the absolute best of them all!!",
+                btnText: "Open Your Present 🎁", isTimer: false, specialAction: "openPresent" 
             },
             {
-                // PAGE 3: ERROR 404
-                theme: "theme-office", 
-                type: "standard", 
-                visual: { type: "icon", content: "⚠️" },
-                title: "Error 404",
-                text: "Words not found to describe how much I love you ❤️",
-                btnText: "Refresh System",
-                isTimer: false
+                theme: "theme-office", type: "standard", visual: { type: "icon", content: "⚠️" },
+                title: "Error 404", text: "Words not found to describe how much I love you ❤️",
+                btnText: "Refresh System", isTimer: false
             },
             {
-                // PAGE 4: STARMAP (Fixed Alignment turns turns image_4.png turns turns turns image_4.png image_4.png image_4.png image_4.png)
-                theme: "theme-starmap-detailed",
-                type: "starmapDetailed", 
-                visual: "starmap.jpg", 
+                theme: "theme-starmap-detailed", type: "starmapDetailed", visual: "starmap.jpg", 
                 mainParagraphText: "In a galaxy of 100 billion stars, these are the only ones that matter because they watched you arrive.",
-                btnText: "Next",
-                isTimer: false 
+                btnText: "Next", isTimer: false 
             },
             {
-                // PAGE 5: NEW ROCKY HAIL MARY / AMAZE REVEAL (Dynamic uncropped fits image_4.png image_4.png image_4.png image_4.png turns image_4.png image_4.png image_4.png turns image_4.png turns image_4.png image_4.png image_4.png image_4.png)
-                // This uses visual for initial loading and finalVisual for personalized reveal fits image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png)
-                theme: "theme-rocky", 
-                type: "rocky", 
-                visual: "rocky.jpg", 
-                finalVisual: "shruti.jpg", // NEW PERSONALISED REVEAL PHOTO fits image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png)
-                btnText: "Next",
-                isTimer: false 
+                // Rocky to Shruti 7-Second Scanning Phase
+                theme: "theme-rocky", type: "rocky", visual: "rocky.jpg", finalVisual: "shruti.jpg",
+                btnText: "Next", isTimer: false 
             },
             {
-                // PAGE 6: MJOLNIR Worthy (Dynamic uncropped fits image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png turns image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png)
-                theme: "theme-god", 
-                type: "photo", 
-                visual: "us.jpg", 
-                title: "Worthy ⚡",
-                text: "I checked with Mjolnir. It confirmed what I already knew: You are definitely Worthy.",
-                btnText: "Next",
-                isTimer: false
+                theme: "theme-god", type: "photo", visual: "us.jpg", 
+                title: "Worthy ⚡", text: "I checked with Mjolnir. It confirmed what I already knew: You are definitely Worthy.",
+                btnText: "Next", isTimer: false
             },
             {
-                // PAGE 7: FINALE
-                theme: "theme-earth", 
-                type: "standard", 
-                visual: { type: "icon", content: "🎬" },
-                title: "My Masterpiece",
-                text: "Happy birthday to the girl who makes every day feel like a cinematic masterpiece. I’m so lucky to have you by my side.",
-                btnText: "Happy Birthday!",
-                isTimer: false
+                theme: "theme-earth", type: "standard", visual: { type: "icon", content: "🎬" },
+                title: "My Masterpiece", text: "Happy birthday to the girl who makes every day feel like a cinematic masterpiece. I’m so lucky to have you by my side.",
+                btnText: "Happy Birthday!", isTimer: false
             }
         ];
 
@@ -429,15 +220,12 @@
             const dynamicContentArea = document.getElementById('dynamic-content-area');
             const btnArea = document.getElementById('button-container');
 
-            // Retrigger fade-in smoothly turns image_4.png image_4.png turns image_4.png image_4.png
             contentBox.classList.remove('fade-in');
             void contentBox.offsetWidth; 
             contentBox.classList.add('fade-in');
 
-            // 1. UPDATE THEME turns turns turns turns turns image_4.png image_4.png
             document.getElementById('body-bg').className = data.theme;
 
-            // 2. BUILD CONTENT dynamic uncropped photo fits turns image_4.png image_4.png image_4.png image_4.png turns image_4.png image_4.png image_4.png image_4.png turns image_4.png image_4.png image_4.png image_4.png image_4.png
             if (data.type === "starmapDetailed") {
                 dynamicContentArea.innerHTML = `
                     <div class="visual-container">
@@ -456,13 +244,11 @@
                 `;
             } else if (data.type === "rocky") {
                 
-                // PHASE 1: Loading Sequence with 7 SECOND TIMER fit turns image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png
+                // PHASE 1: Rocky Loading Sequence (7 Seconds)
                 dynamicContentArea.innerHTML = `
                     <div class="visual-container fade-in" style="flex-direction: column;">
-                        <div class="photofit-aura-wrap" style="padding: 4px; border-radius: 18px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); animation: lightningAuraPulse 1s ease-in-out infinite;">
-                            <div class="photo-visual" style="max-height: 280px; background: transparent; animation: floatRocky 4s ease-in-out infinite;">
-                                <img src="${data.visual}" alt="Rocky" style="object-fit: contain;">
-                            </div>
+                        <div class="rocky-visual">
+                            <img src="${data.visual}" alt="Rocky">
                         </div>
                     </div>
                     <h1 class="title fade-in" style="font-size: 1.4rem; letter-spacing: 0.5px; line-height: 1.4;">Scanning the galaxy...</h1>
@@ -471,15 +257,14 @@
                     </p>
                 `;
                 
-                // Locked scanning button fits turns image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png
                 btnArea.innerHTML = `<button id="nav-btn" disabled>Scanning...</button>`;
 
-                // PHASE 2: Shruti Reveal Sequence AFTER 7 SECONDS (dynamic uncropped fit with aura turns turns image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png)
+                // PHASE 2: Shruti Reveal Sequence after 7 Seconds
                 setTimeout(() => {
                     dynamicContentArea.innerHTML = `
                         <div class="visual-container fade-in" style="flex-direction: column;">
-                            <div class="photo-lightning-aura">
-                                <div class="photo-visual" style="box-shadow: 0 0 30px rgba(179, 157, 219, 0.4); border: 2px solid rgba(179, 157, 219, 0.8);">
+                            <div class="photo-lightning-aura" style="box-shadow: 0 0 30px rgba(179, 157, 219, 0.4); border: 2px solid rgba(179, 157, 219, 0.8);">
+                                <div class="photo-visual">
                                     <img src="${data.finalVisual}" alt="Shruti">
                                 </div>
                             </div>
@@ -491,12 +276,11 @@
                         </p>
                     `;
                     
-                    // Unlocks standard next button image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png turns image_4.png image_4.png image_4.png image_4.png image_4.png
+                    // Unlocks the button to trigger Thor next
                     btnArea.innerHTML = `<button onclick="showThorAnimation()">${data.btnText}</button>`;
-                }, 7000); // 7 SECOND TIMER FIT fits turns image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png
+                }, 7000); 
 
             } else if (data.type === "photo") {
-                // Modified dynamically to fit the full uncropped image AND add lightning turns turn turns turns turn turns turn turns turn turns turn turns turn turns turn turns turn turns turn turns image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png
                 dynamicContentArea.innerHTML = `
                     <div class="visual-container" style="flex-direction: column;">
                         <div class="photo-lightning-aura">
@@ -518,7 +302,7 @@
                 `;
             }
 
-            // BUTTON LOGIC fits image_4.png turns image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png
+            // BUTTON LOGIC (Skipped for Rocky since Rocky handles its own button timeouts)
             if (data.type !== "rocky") {
                 if (data.isTimer) {
                     btnArea.innerHTML = `<button id="nav-btn" disabled>Unlocking in 3...</button>`;
@@ -544,7 +328,7 @@
             }
         }
 
-        // Custom function to handle the Present Opening Animation turns turns image_4.png turns turns turns image_4.png turns image_4.png image_4.png image_4.png image_4.png turns image_4.png turns image_4.png turns
+        // Present Animation
         function openPresentEffect() {
             const overlay = document.getElementById('present-overlay');
             const presentBox = document.getElementById('present-box');
@@ -556,17 +340,16 @@
                 presentBox.classList.add('pop-out');
                 setTimeout(() => {
                     overlay.style.display = 'none';
-                    nextPage(); // Loads Error 404 turns image_4.png image_4.png turns image_4.png turns image_4.png
+                    nextPage(); 
                 }, 500); 
             }, 1200);
         }
 
-        // Updated Thor Animation Logic for the GIF turns image_4.png turns turns turns turns image_4.png image_4.png image_4.png turns image_4.png image_4.png image_4.png
+        // Thor Animation 
         function showThorAnimation() {
             const overlay = document.getElementById('thor-overlay');
             overlay.style.display = 'flex';
 
-            // Gives the GIF 2.8 seconds to play its animation before fading out turns image_4.png turns turns turns turns image_4.png image_4.png image_4.png turns image_4.png image_4.png
             setTimeout(() => {
                 overlay.style.transition = 'opacity 0.5s ease';
                 overlay.style.opacity = '0';
@@ -575,7 +358,7 @@
                     overlay.style.display = 'none';
                     overlay.style.opacity = '1'; 
                     overlay.style.transition = 'none'; 
-                    nextPage(); // Seamlessly loads Worthy fits turns image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png
+                    nextPage(); // Triggers the Worthy Page
                 }, 500); 
             }, 2800); 
         }
@@ -588,7 +371,6 @@
         }
 
         function finishJourney() {
-            //pops up when she clicks the final dynamic birthday wish button turn turns image_4.png turns turns image_4.png image_4.png image_4.png turns image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png image_4.png
             alert("Happy Birthday Shruti! ❤️🎬");
         }
 
