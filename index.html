@@ -40,7 +40,6 @@
         }
 
         /* --- THEME DEFINITIONS --- */
-        
         .theme-dark { background: linear-gradient(135deg, #1c2a38, #0d1117); color: #e8e8e8; }
         .theme-dark .paragraph { color: #e8e8e8; }
         .theme-dark button { border-color: #e8e8e8; color: #e8e8e8; }
@@ -72,69 +71,53 @@
         .theme-earth button { border-color: #1a1a1a; color: #1a1a1a; }
         .theme-earth button:hover:not(:disabled) { background: #1a1a1a; color: #ffffff !important; }
 
+        /* ROCKY SPACE THEME */
+        .theme-rocky { background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); color: #e6e6fa; }
+        .theme-rocky .paragraph { color: #e6e6fa; }
+        .theme-rocky button { border-color: #b39ddb; color: #b39ddb; }
+        .theme-rocky button:hover:not(:disabled) { background: #b39ddb; color: #0f0c29 !important; }
+
         /* --- TEXT STYLING CLASSES --- */
-        .title {
-            font-size: 1.7rem; 
-            margin-bottom: 8px; 
-            letter-spacing: 1px;
-            font-family: 'Playfair Display', serif;
-            transition: color 0.5s ease;
-        }
+        .title { font-size: 1.7rem; margin-bottom: 8px; letter-spacing: 1px; font-family: 'Playfair Display', serif; transition: color 0.5s ease; }
+        .paragraph { font-size: 1.0rem; line-height: 1.4; margin-bottom: 12px; min-height: 60px; font-family: 'Poppins', sans-serif; transition: color 0.5s ease; }
 
-        .paragraph {
-            font-size: 1.0rem; 
-            line-height: 1.4; 
-            margin-bottom: 12px; 
-            min-height: 60px; 
-            font-family: 'Poppins', sans-serif;
-            transition: color 0.5s ease;
-        }
-
-        .verbatim-text-stack {
-            display: flex; flex-direction: column; gap: 12px; align-items: center; margin-top: 10px;
-        }
-        .verbatim-large-title {
-            font-size: 3.5rem; font-weight: 300; margin-bottom: 0px; letter-spacing: 1px;
-            font-family: 'Playfair Display', serif; color: rgba(212, 175, 55, 0.9); 
-        }
-        .verbatim-separator {
-            width: 70%; border: none; border-top: 1.5px solid rgba(212, 175, 55, 0.7); margin: 5px auto 10px;
-        }
-        .verbatim-descriptive-text {
-            font-size: 1.05rem; font-weight: 300; line-height: 1.45; font-family: 'Poppins', sans-serif; color: rgba(212, 175, 55, 0.9); 
-        }
-        .verbatim-small-text {
-            font-size: 0.95rem; font-weight: 300; line-height: 1.35; font-family: 'Poppins', sans-serif; color: rgba(212, 175, 55, 0.9); 
-        }
+        .verbatim-text-stack { display: flex; flex-direction: column; gap: 12px; align-items: center; margin-top: 10px; }
+        .verbatim-large-title { font-size: 3.5rem; font-weight: 300; margin-bottom: 0px; letter-spacing: 1px; font-family: 'Playfair Display', serif; color: rgba(212, 175, 55, 0.9); }
+        .verbatim-separator { width: 70%; border: none; border-top: 1.5px solid rgba(212, 175, 55, 0.7); margin: 5px auto 10px; }
+        .verbatim-descriptive-text { font-size: 1.05rem; font-weight: 300; line-height: 1.45; font-family: 'Poppins', sans-serif; color: rgba(212, 175, 55, 0.9); }
+        .verbatim-small-text { font-size: 0.95rem; font-weight: 300; line-height: 1.35; font-family: 'Poppins', sans-serif; color: rgba(212, 175, 55, 0.9); }
 
         /* --- VISUAL ELEMENTS STYLING --- */
-        .visual-container {
-            width: 100%; display: flex; justify-content: center; align-items: center; margin-bottom: 12px; 
-        }
+        .visual-container { width: 100%; display: flex; justify-content: center; align-items: center; margin-bottom: 12px; }
+        .icon { font-size: 3.2rem; text-shadow: 0 2px 10px rgba(0,0,0,0.1); }
 
-        .icon {
-            font-size: 3.2rem; text-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .star-map-visual {
-            width: 240px; height: 240px; border-radius: 50%; overflow: hidden; display: flex;
-            align-items: center; justify-content: center; background-color: #000; box-shadow: 0 8px 25px rgba(0,0,0,0.3); 
-        }
+        .star-map-visual { width: 240px; height: 240px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; background-color: #000; box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
         .star-map-visual img { width: 100%; height: 100%; object-fit: cover; }
 
-        .photo-visual {
-            width: 100%; max-width: 320px; max-height: 240px; border-radius: 15px; overflow: hidden;
-            background: rgba(0,0,0,0.2); display: flex; justify-content: center; align-items: center;
+        .photo-visual { width: 100%; max-width: 320px; max-height: 240px; border-radius: 15px; overflow: hidden; background: rgba(0,0,0,0.2); display: flex; justify-content: center; align-items: center; }
+        .photo-visual img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; border-radius: 15px; }
+
+        /* ROCKY ZERO-GRAVITY ANIMATION */
+        .rocky-visual {
+            width: 100%; max-width: 350px; max-height: 280px; 
+            border-radius: 15px; overflow: hidden; display: flex; 
+            justify-content: center; align-items: center;
+            background: transparent;
+            animation: floatRocky 4s ease-in-out infinite; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
         }
-        .photo-visual img {
-            max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; border-radius: 15px; 
+        .rocky-visual img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; border-radius: 15px; }
+
+        @keyframes floatRocky {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(1.5deg); } 
         }
 
-        .photo-lightning-aura {
-            width: auto; height: auto; position: relative; padding: 4px; border-radius: 18px; 
-            animation: lightningAuraPulse 1s ease-in-out infinite;
-        }
+        .pulse-text { display: inline-block; animation: textPulse 1.5s infinite; text-shadow: 0 0 15px rgba(179, 157, 219, 0.6); }
+        @keyframes textPulse { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.05); opacity: 1; } }
 
+        /* Mjolnir photo aura */
+        .photo-lightning-aura { width: auto; height: auto; position: relative; padding: 4px; border-radius: 18px; animation: lightningAuraPulse 1s ease-in-out infinite; }
         @keyframes lightningAuraPulse {
             0%, 100% { box-shadow: 0 0 8px #00d2ff, 0 0 20px #00d2ff, 0 0 35px #ffffff; transform: rotate(0deg); }
             25% { box-shadow: -3px 2px 10px #ffffff, 1px -4px 18px #00d2ff, 2px 2px 25px #3a86ff; transform: rotate(-1deg); }
@@ -144,68 +127,27 @@
 
         /* --- BUTTONS STYLING --- */
         .btn-container { display: flex; flex-direction: column; gap: 12px; align-items: center; width: 100%; margin-top: 15px; }
-        button {
-            padding: 12px 20px; font-size: 1.05rem; border-radius: 30px; cursor: pointer;
-            font-family: 'Poppins', sans-serif; font-weight: 600; transition: all 0.3s ease;
-            width: 100%; max-width: 300px; background: transparent; border: 2px solid; 
-            color: inherit; border-color: inherit; 
-        }
+        button { padding: 12px 20px; font-size: 1.05rem; border-radius: 30px; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: 600; transition: all 0.3s ease; width: 100%; max-width: 300px; background: transparent; border: 2px solid; color: inherit; border-color: inherit; }
         button:disabled { opacity: 0.3; cursor: not-allowed; color: #777 !important; border-color: #777 !important; }
         button:hover:not(:disabled) { transform: translateY(-2px); color: #ffffff !important; background: currentColor; }
-
         .theme-office button:hover:not(:disabled) { color: #111 !important; }
         .theme-dark button:hover:not(:disabled) { color: #111 !important; }
 
         .fade-in { animation: fadeIn 0.6s ease forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- PRESENT OPENING OVERLAY --- */
-        #present-overlay {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(0,0,0,0.85); z-index: 9999;
-            display: none; align-items: center; justify-content: center;
-            flex-direction: column; color: white; backdrop-filter: blur(5px);
-        }
+        /* --- OVERLAYS --- */
+        #present-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 9999; display: none; align-items: center; justify-content: center; flex-direction: column; color: white; backdrop-filter: blur(5px); }
         .present-icon { font-size: 6rem; animation: giftShake 0.6s ease-in-out infinite; }
         @keyframes giftShake { 0%, 100% { transform: rotate(0deg) scale(1); } 25% { transform: rotate(-15deg) scale(1.1); } 75% { transform: rotate(15deg) scale(1.1); } }
         .pop-out { animation: popOut 0.5s forwards !important; }
         @keyframes popOut { 0% { transform: scale(1.1); opacity: 1; } 50% { transform: scale(1.8); opacity: 1; } 100% { transform: scale(4); opacity: 0; } }
 
-        /* --- THOR THUNDERSTRIKE GIF OVERLAY --- */
-        #thor-overlay {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: #000; z-index: 10000; 
-            display: none; align-items: center; justify-content: center;
-            flex-direction: column; overflow: hidden;
-        }
-
-        .lightning-flash-bg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: #fff; opacity: 0;
-            animation: backgroundLightningStrike 2.8s ease-out; 
-        }
-
-        @keyframes backgroundLightningStrike {
-            0%, 10%, 20%, 30% { opacity: 1; }
-            5%, 15%, 25%, 40%, 100% { opacity: 0; }
-        }
-
-        /* GIF Styling */
-        .thor-visual {
-            display: flex; align-items: center; justify-content: center;
-            position: relative; z-index: 1;
-            animation: thorArrival 0.5s ease-out; 
-        }
-        
-        .thor-visual img {
-            max-width: 90vw; 
-            max-height: 50vh; 
-            border-radius: 12px;
-            object-fit: contain;
-            box-shadow: 0 0 50px #00d2ff; /* Huge electric blue aura around the GIF */
-            background: #000;
-        }
-
+        #thor-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000; z-index: 10000; display: none; align-items: center; justify-content: center; flex-direction: column; overflow: hidden; }
+        .lightning-flash-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #fff; opacity: 0; animation: backgroundLightningStrike 2.8s ease-out; }
+        @keyframes backgroundLightningStrike { 0%, 10%, 20%, 30% { opacity: 1; } 5%, 15%, 25%, 40%, 100% { opacity: 0; } }
+        .thor-visual { display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; animation: thorArrival 0.5s ease-out; }
+        .thor-visual img { max-width: 90vw; max-height: 50vh; border-radius: 12px; object-fit: contain; box-shadow: 0 0 50px #00d2ff; background: #000; }
         @keyframes thorArrival { 0% { transform: scale(0); opacity: 0; } 80% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
 
     </style>
@@ -249,7 +191,12 @@
             {
                 theme: "theme-starmap-detailed", type: "starmapDetailed", visual: "starmap.jpg", 
                 mainParagraphText: "In a galaxy of 100 billion stars, these are the only ones that matter because they watched you arrive.",
-                btnText: "Next", isTimer: false, specialAction: "showThor" 
+                btnText: "Next", isTimer: false 
+            },
+            {
+                // ROCKY PAGE: Uses visual for loading, and finalVisual for the Amaze reveal!
+                theme: "theme-rocky", type: "rocky", visual: "rocky.jpg", finalVisual: "shruti.jpg",
+                btnText: "Next", isTimer: false 
             },
             {
                 theme: "theme-god", type: "photo", visual: "us.jpg", 
@@ -293,6 +240,43 @@
                     </div>
                     <p class="paragraph" style="margin-top: 15px;">${data.mainParagraphText}</p>
                 `;
+            } else if (data.type === "rocky") {
+                
+                // PHASE 1: Rocky Loading Sequence
+                dynamicContentArea.innerHTML = `
+                    <div class="visual-container fade-in" style="flex-direction: column;">
+                        <div class="rocky-visual">
+                            <img src="${data.visual}" alt="Rocky">
+                        </div>
+                    </div>
+                    <h1 class="title fade-in" style="font-size: 1.4rem; letter-spacing: 0.5px; line-height: 1.4;">Scanning the galaxy...</h1>
+                    <p class="paragraph fade-in" style="font-size: 1.2rem; margin-top: 10px;">
+                        <span class="pulse-text" style="color: #b39ddb;">Searching for the best person... 🎵</span>
+                    </p>
+                `;
+                
+                // Locked scanning button
+                btnArea.innerHTML = `<button id="nav-btn" disabled>Scanning...</button>`;
+
+                // PHASE 2: Shruti Reveal Sequence (Happens after 3.5 seconds)
+                setTimeout(() => {
+                    dynamicContentArea.innerHTML = `
+                        <div class="visual-container fade-in" style="flex-direction: column;">
+                            <div class="photo-visual" style="box-shadow: 0 0 30px rgba(179, 157, 219, 0.4); border: 2px solid rgba(179, 157, 219, 0.8);">
+                                <img src="${data.finalVisual}" alt="Shruti">
+                            </div>
+                        </div>
+                        <h1 class="title fade-in" style="font-size: 1.4rem; letter-spacing: 0.5px; line-height: 1.4;">Who is the best person in the galaxy, question?</h1>
+                        <p class="paragraph fade-in" style="font-size: 1.2rem; margin-top: 10px;">
+                            <span style="font-weight: 600; color: #fff;">Answer: You.</span><br><br>
+                            <span class="pulse-text" style="font-size: 1.6rem; font-style: italic; color: #b39ddb; font-weight: 600;">Amaze, Amaze, Amaze! 🎵</span>
+                        </p>
+                    `;
+                    
+                    // Unlocks the button to trigger Thor next!
+                    btnArea.innerHTML = `<button onclick="showThorAnimation()">${data.btnText}</button>`;
+                }, 3500);
+
             } else if (data.type === "photo") {
                 dynamicContentArea.innerHTML = `
                     <div class="visual-container" style="flex-direction: column;">
@@ -315,28 +299,29 @@
                 `;
             }
 
-            if (data.isTimer) {
-                btnArea.innerHTML = `<button id="nav-btn" disabled>Unlocking in 3...</button>`;
-                let timeLeft = 3;
-                const timer = setInterval(() => {
-                    timeLeft--;
-                    if (timeLeft > 0) {
-                        document.getElementById('nav-btn').innerText = `Unlocking in ${timeLeft}...`;
-                    } else {
-                        clearInterval(timer);
-                        document.getElementById('nav-btn').innerText = data.btnText;
-                        document.getElementById('nav-btn').disabled = false;
-                        document.getElementById('nav-btn').onclick = nextPage;
-                    }
-                }, 1000);
-            } else if (data.specialAction === "openPresent") {
-                btnArea.innerHTML = `<button onclick="openPresentEffect()">${data.btnText}</button>`;
-            } else if (data.specialAction === "showThor") {
-                btnArea.innerHTML = `<button onclick="showThorAnimation()">${data.btnText}</button>`;
-            } else if (currentIndex === pages.length - 1) {
-                btnArea.innerHTML = `<button onclick="finishJourney()">${data.btnText}</button>`;
-            } else {
-                btnArea.innerHTML = `<button onclick="nextPage()">${data.btnText}</button>`;
+            // BUTTON LOGIC (Skipped for Rocky since Rocky handles its own button timeouts)
+            if (data.type !== "rocky") {
+                if (data.isTimer) {
+                    btnArea.innerHTML = `<button id="nav-btn" disabled>Unlocking in 3...</button>`;
+                    let timeLeft = 3;
+                    const timer = setInterval(() => {
+                        timeLeft--;
+                        if (timeLeft > 0) {
+                            document.getElementById('nav-btn').innerText = `Unlocking in ${timeLeft}...`;
+                        } else {
+                            clearInterval(timer);
+                            document.getElementById('nav-btn').innerText = data.btnText;
+                            document.getElementById('nav-btn').disabled = false;
+                            document.getElementById('nav-btn').onclick = nextPage;
+                        }
+                    }, 1000);
+                } else if (data.specialAction === "openPresent") {
+                    btnArea.innerHTML = `<button onclick="openPresentEffect()">${data.btnText}</button>`;
+                } else if (currentIndex === pages.length - 1) {
+                    btnArea.innerHTML = `<button onclick="finishJourney()">${data.btnText}</button>`;
+                } else {
+                    btnArea.innerHTML = `<button onclick="nextPage()">${data.btnText}</button>`;
+                }
             }
         }
 
@@ -356,12 +341,10 @@
             }, 1200);
         }
 
-        // Updated Thor Animation Logic for the GIF
         function showThorAnimation() {
             const overlay = document.getElementById('thor-overlay');
             overlay.style.display = 'flex';
 
-            // Gives the GIF 2.8 seconds to play its animation before fading out
             setTimeout(() => {
                 overlay.style.transition = 'opacity 0.5s ease';
                 overlay.style.opacity = '0';
